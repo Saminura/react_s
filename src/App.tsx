@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Header from './components/Header';
+import PokemonCard from './components/Pokemoncard';
 
 
 function App() {
@@ -31,9 +33,10 @@ function App() {
    };
   
   return (
-    <>
-      <h1>Pokémon Viewer</h1>
-      <p className='subtitle'>Загрузи любого покемона из интернета</p>
+    
+      <>
+         <Header/>
+      
 
       <div className='controls'>
         <input id='pokemonInput' type='text' placeholder='Например: pikachu' onChange={(e) => setName(e.target.value)} />
@@ -48,23 +51,7 @@ function App() {
       <p id='status' className='status'></p>
 
       <div id='card' className='card-container'>
-        {pokemon ? (
-        <div className='card'>
-          <h2>{pokemon.name}</h2>
-          <img src={pokemon.image} />
-
-          <p>Рост: {pokemon.height}</p>
-          <p>Вес: {pokemon.weight}</p>
-
-          <div className='types'>
-            {pokemon.types.map(type => (
-            <span className='type'>{type}r</span>
-            ))}
-          </div>
-        </div>
-      ) : (
-        'пусто'
-      )}
+        {pokemon ? <PokemonCard data={pokemon} /> : 'пусто'}
       </div>
     </>
   );
